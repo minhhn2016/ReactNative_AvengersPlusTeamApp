@@ -1,26 +1,32 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { playerUpdate, playerCreate } from '../actions';
-import { Card, CardSection, Button } from './common';
 import PlayerForm from './PlayerForm';
+import { playerUpdate, playerSave } from '../actions';
+import { Card, CardSection, Button } from './common';
 
+class PlayerEdit extends Component {
+    componentWillMount() {
+        _.each(this.props.player, (value, prop) => {
+            this.props.playerUpdate({ prop, value });
+        });
+    }
 
-class PlayerCreate extends Component {
     onButtonPress() {
         const { name, email, phone } = this.props;
-
-        this.props.playerCreate({ name, email, phone });
+        
+        this.props.playerSave({ name, email, phone, uid: this.props.player.uid });
     }
 
     render() {
         return (
             <Card>
-                <PlayerForm {...this.props} />
+                <PlayerForm />
                 <CardSection>
                     <Button whenPressed={this.onButtonPress.bind(this)}>
-                        Create Player
-                    </Button>    
-                </CardSection>               
+                        Save Changes
+                    </Button>
+                </CardSection>
             </Card>
         );
     }
@@ -34,5 +40,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { 
     playerUpdate,
-    playerCreate
-})(PlayerCreate);
+    playerSave
+ })(PlayerEdit);
