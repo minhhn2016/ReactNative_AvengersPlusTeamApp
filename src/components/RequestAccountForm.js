@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import Communications from 'react-native-communications';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
 class RequestAccountForm extends Component {
+    onbuttonPress() {
+        const {}
+    }
+
     render() {
         return (
             <Card>
@@ -26,7 +31,7 @@ class RequestAccountForm extends Component {
                     />
                 </CardSection>
                 <CardSection>
-                    <Button>Submit</Button>
+                    <Button whenPressed={this.onButtonPress.bind(this)}>Submit</Button>
                 </CardSection>
             </Card>
         );
