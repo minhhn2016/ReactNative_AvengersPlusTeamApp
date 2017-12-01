@@ -14,10 +14,12 @@ const RouterComponent = () => {
                 <Scene key="requestAccount" component={RequestAccountForm} title="Submit your request" />              
             </Scene>
 
-            <Scene key="main">
-                <Scene 
-                    onRight={() => Actions.playerCreate()}
-                    rightTitle="Add"
+            <Scene 
+                key="main"
+                onRight={() => Actions.auth({ type: 'reset' })}
+                rightTitle="Sign Out"
+            >
+                <Scene
                     key="playerList" 
                     component={PlayerList} 
                     title="Players"

@@ -2,10 +2,13 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
+import { Actions } from 'react-native-router-flux';
+import { Card, CardSection, Button } from './common';
 import { playersFetch } from '../actions';
 import PlayerListItem from './PlayerListItem';
 
 class PlayerList extends Component {
+
     componentWillMount() {
         this.props.playersFetch();
 
@@ -14,6 +17,10 @@ class PlayerList extends Component {
 
     componentWillReceiveProps(nextProps) {
         this.createDataSource(nextProps);
+    }
+
+    onButtonPress() {
+        Actions.playerCreate();
     }
 
     createDataSource({ players }) {
@@ -30,12 +37,19 @@ class PlayerList extends Component {
 
     render() {
         console.log(this.props);
-        return (            
-            <ListView
-                enableEmptySections
-                dataSource={this.dataSource}
-                renderRow={this.renderRow}
-            />
+        return (
+            <Card>            
+                <ListView
+                    enableEmptySections
+                    dataSource={this.dataSource}
+                    renderRow={this.renderRow}
+                />
+                <CardSection>
+                    <Button whenPressed={this.onButtonPress.bind(this)}>
+                        Add a Player
+                    </Button> 
+                </CardSection>                              
+            </Card>
         );
     }
 }

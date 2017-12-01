@@ -4,7 +4,7 @@ import {
     LOGIN_USER_SUCCESS,
     LOGIN_USER_FAIL,
     LOGIN_USER,
-    ACCOUNT_REQUEST 
+    LOGOUT_USER 
 } from '../actions/types';
 
 const INITIAL_STATE = { 
