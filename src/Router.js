@@ -23,7 +23,7 @@ const RouterComponent = () => {
                     title="Players"
                     initial    
                 />
-                <Scene 
+                <Scene
                     key="playerCreate"
                     component={PlayerCreate}
                     title="Add a new player"

@@ -3,15 +3,15 @@ import { Actions } from 'react-native-router-flux';
 import { 
     PLAYER_UPDATE, 
     PLAYER_CREATE,
-    PLAYERS_FETCH_SUCCESS,
-    PLAYER_SAVE_SUCCESS 
+    PLAYERS_FETCH_SUCCESS,    
+    PLAYER_FORM_CLEAR,       
 } from './types';
 
 export const playerUpdate = ({ prop, value }) => {
     return {
         type: PLAYER_UPDATE,
         payload: { prop, value }
-    };
+    };      
 };
 
 export const playerCreate = ({ name, email, phone }) => {
@@ -45,8 +45,14 @@ export const playerSave = ({ name, email, phone, uid }) => {
         firebase.database().ref(`/users/${currentUser.uid}/players/${uid}`)
             .set({ name, email, phone })
             .then(() => {
-                dispatch({ type: PLAYER_SAVE_SUCCESS });
+                dispatch({ type: PLAYER_FORM_CLEAR });
                 Actions.playerList({ type: 'reset' });
             });
+    };
+};
+
+export const playerFormClear = () => {
+    return (dispatch) => {
+        dispatch({ type: PLAYER_FORM_CLEAR });
     };
 };

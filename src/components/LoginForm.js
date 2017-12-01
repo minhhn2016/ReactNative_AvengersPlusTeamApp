@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
@@ -31,7 +32,7 @@ class LoginForm extends Component {
         }
     }
 
-    renderButton() {
+    renderLoginButton() {
         if (this.props.loading) {
             return <Spinner size="large" />;
         }
@@ -40,6 +41,14 @@ class LoginForm extends Component {
             <Button whenPressed={this.onButtonPress.bind(this)}>
                 Log In
             </Button>
+        );
+    }
+
+    renderRequestButton() {
+        return (
+        <Button whenPressed={() => Actions.requestAccount()}>
+            Request an Account
+        </Button>
         );
     }
 
@@ -68,13 +77,11 @@ class LoginForm extends Component {
                 {this.renderError()}
                     
                 <CardSection>                    
-                    {this.renderButton()}
+                    {this.renderLoginButton()}
                 </CardSection>
 
                 <CardSection>
-                    <Button>
-                        Guest
-                    </Button>
+                    {this.renderRequestButton()}
                 </CardSection>
             </Card>
         );

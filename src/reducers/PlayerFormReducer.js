@@ -1,7 +1,7 @@
 import {
     PLAYER_UPDATE, 
-    PLAYER_CREATE,
-    PLAYER_SAVE_SUCCESS
+    PLAYER_CREATE,    
+    PLAYER_FORM_CLEAR,    
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -15,9 +15,9 @@ export default (state = INITIAL_STATE, action) => {
         case PLAYER_UPDATE:
             return { ...state, [action.payload.prop]: action.payload.value };
         case PLAYER_CREATE:
-            return INITIAL_STATE;
-        case PLAYER_SAVE_SUCCESS:
-            return INITIAL_STATE;
+            return INITIAL_STATE;        
+        case PLAYER_FORM_CLEAR:
+            return INITIAL_STATE;                
         default:
             return state;
     }

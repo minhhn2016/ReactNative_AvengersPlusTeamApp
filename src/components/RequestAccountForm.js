@@ -1,41 +1,39 @@
+import _ from 'lodash';
 import React, { Component } from 'react';
 import Communications from 'react-native-communications';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { connect } from 'react-redux';
+import { playerUpdate } from '../actions';
+import PlayerForm from './PlayerForm';
+import { Card, CardSection, Button } from './common';
 
 class RequestAccountForm extends Component {
-    onbuttonPress() {
-        const {}
+    onButtonPress() {
+        const { name, email, phone } = this.props;
+
+        Communications
+        .text('0401765747', `I am ${name}.
+        Please create an account for me with email: ${email},
+        and phone number: ${phone}. Thank you!`);        
     }
 
     render() {
         return (
             <Card>
+                <PlayerForm />
                 <CardSection>
-                    <Input
-                        labelText="Name"
-                        placeholderText="Enter your name"
-                    />
-                </CardSection>
-                <CardSection>
-                    <Input
-                        labelText="Email"
-                        placeholderText="Enter your email"
-                    />
-                </CardSection>
-                <CardSection>
-                    <Input
-                        labelText="Message"
-                        placeholderText="Your message"
-                        multiline
-                        numberOfLines={4}
-                    />
-                </CardSection>
-                <CardSection>
-                    <Button whenPressed={this.onButtonPress.bind(this)}>Submit</Button>
+                    <Button whenPressed={this.onButtonPress.bind(this)}>
+                        Submit
+                    </Button>
                 </CardSection>
             </Card>
         );
     }
 }
 
-export default RequestAccountForm;
+const mapStateToProps = (state) => {
+    const { name, email, phone } = state.playerForm;
+
+    return { name, email, phone };
+};
+
+export default connect(mapStateToProps, { playerUpdate })(RequestAccountForm);

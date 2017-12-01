@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { playerUpdate, playerCreate } from '../actions';
+import { playerUpdate, playerCreate, playerFormClear } from '../actions';
 import { Card, CardSection, Button } from './common';
 import PlayerForm from './PlayerForm';
 
 
 class PlayerCreate extends Component {
+    componentDidMount() {
+        this.props.playerFormClear();
+    }
+
     onButtonPress() {
         const { name, email, phone } = this.props;
 
@@ -34,5 +38,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { 
     playerUpdate,
-    playerCreate
+    playerCreate,
+    playerFormClear    
 })(PlayerCreate);
