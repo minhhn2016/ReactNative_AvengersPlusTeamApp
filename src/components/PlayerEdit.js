@@ -2,10 +2,12 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PlayerForm from './PlayerForm';
-import { playerUpdate, playerSave } from '../actions';
-import { Card, CardSection, Button } from './common';
+import { playerUpdate, playerSave, playerDelete } from '../actions';
+import { Card, CardSection, Button, Confirm } from './common';
 
 class PlayerEdit extends Component {
+    state = { showModal: false };
+
     componentWillMount() {
         _.each(this.props.player, (value, prop) => {
             this.props.playerUpdate({ prop, value });
@@ -18,6 +20,16 @@ class PlayerEdit extends Component {
         this.props.playerSave({ name, email, phone, uid: this.props.player.uid });
     }
 
+    onAccept() {
+        const { uid } = this.props.player;
+
+        this.props.playerDelete({ uid });
+    }
+
+    onDecline() {
+        this.setState({ showModal: false });
+    }
+
     render() {
         return (
             <Card>
@@ -27,6 +39,20 @@ class PlayerEdit extends Component {
                         Save Changes
                     </Button>
                 </CardSection>
+
+                <CardSection>
+                    <Button whenPressed={() => this.setState({ showModal: !this.state.showModal })}>
+                        Remove Player
+                    </Button>
+                </CardSection>
+
+                <Confirm
+                    visible={this.state.showModal}
+                    onAccept={this.onAccept.bind(this)}
+                    onDecline={this.onDecline.bind(this)}
+                >
+                    Are your sure you want to remove this player?
+                </Confirm>
             </Card>
         );
     }
@@ -40,5 +66,6 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, { 
     playerUpdate,
-    playerSave
+    playerSave,
+    playerDelete
  })(PlayerEdit);

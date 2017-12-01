@@ -51,6 +51,18 @@ export const playerSave = ({ name, email, phone, uid }) => {
     };
 };
 
+export const playerDelete = ({ uid }) => {
+    const { currentUser } = firebase.auth();
+
+    return () => {
+        firebase.database().ref(`/users/${currentUser.uid}/players/${uid}`)
+            .remove()
+            .then(() => {
+                Actions.playerList({ type: 'reset' });
+            });
+    };
+};
+
 export const playerFormClear = () => {
     return (dispatch) => {
         dispatch({ type: PLAYER_FORM_CLEAR });
