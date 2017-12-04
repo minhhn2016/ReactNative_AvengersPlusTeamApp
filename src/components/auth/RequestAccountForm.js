@@ -2,11 +2,15 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import Communications from 'react-native-communications';
 import { connect } from 'react-redux';
-import { playerUpdate } from '../../actions';
+import { playerUpdate, playerFormClear } from '../../actions';
 import PlayerForm from '../player/PlayerForm';
 import { Card, CardSection, Button } from '../common';
 
 class RequestAccountForm extends Component {
+    componentDidMount() {
+        this.props.playerFormClear();
+    }
+
     onButtonPress() {
         const { name, email, phone } = this.props;
 
@@ -36,4 +40,4 @@ const mapStateToProps = (state) => {
     return { name, email, phone };
 };
 
-export default connect(mapStateToProps, { playerUpdate })(RequestAccountForm);
+export default connect(mapStateToProps, { playerUpdate, playerFormClear })(RequestAccountForm);
