@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
-import { playerUpdate } from '../actions';
-import { CardSection, Input } from './common';
+import { playerUpdate } from '../../actions';
+import { CardSection, Input } from '../common';
 
 class PlayerForm extends Component {
     render() {

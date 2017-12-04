@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Card, CardSection, Button } from './common';
-import { playersFetch } from '../actions';
+import { Card, CardSection, Button } from '../common';
+import { playersFetch } from '../../actions';
 import PlayerListItem from './PlayerListItem';
 
 class PlayerList extends Component {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { playerUpdate, playerCreate, playerFormClear } from '../actions';
-import { Card, CardSection, Button } from './common';
+import { playerUpdate, playerCreate, playerFormClear } from '../../actions';
+import { Card, CardSection, Button } from '../common';
 import PlayerForm from './PlayerForm';
 
 

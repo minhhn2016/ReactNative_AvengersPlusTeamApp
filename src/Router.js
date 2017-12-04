@@ -1,10 +1,10 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
-import LoginForm from './components/LoginForm';
-import RequestAccountForm from './components/RequestAccountForm';
-import PlayerList from './components/PlayerList';
-import PlayerCreate from './components/PlayerCreate';
-import PlayerEdit from './components/PlayerEdit';
+import LoginForm from './components/auth/LoginForm';
+import RequestAccountForm from './components/auth/RequestAccountForm';
+import PlayerList from './components/player/PlayerList';
+import PlayerCreate from './components/player/PlayerCreate';
+import PlayerEdit from './components/player/PlayerEdit';
 
 const RouterComponent = () => {
     return (

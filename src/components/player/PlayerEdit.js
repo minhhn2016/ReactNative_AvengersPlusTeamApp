@@ -2,8 +2,8 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PlayerForm from './PlayerForm';
-import { playerUpdate, playerSave, playerDelete } from '../actions';
-import { Card, CardSection, Button, Confirm } from './common';
+import { playerUpdate, playerSave, playerDelete } from '../../actions';
+import { Card, CardSection, Button, Confirm } from '../common';
 
 class PlayerEdit extends Component {
     state = { showModal: false };

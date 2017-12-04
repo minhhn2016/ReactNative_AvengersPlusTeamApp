@@ -2,9 +2,9 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import Communications from 'react-native-communications';
 import { connect } from 'react-redux';
-import { playerUpdate } from '../actions';
-import PlayerForm from './PlayerForm';
-import { Card, CardSection, Button } from './common';
+import { playerUpdate } from '../../actions';
+import PlayerForm from '../player/PlayerForm';
+import { Card, CardSection, Button } from '../common';
 
 class RequestAccountForm extends Component {
     onButtonPress() {
